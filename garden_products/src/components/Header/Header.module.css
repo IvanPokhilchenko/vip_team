@@ -1,0 +1,142 @@
+.header {
+  position: sticky;
+  z-index: 50;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 20px 0;
+  background-color: var(--white-color);
+}
+
+.header_content {
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.header_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5%;
+}
+
+.menu {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 5fr 0.8fr;
+  align-items: center;
+}
+
+.logo_wrapper {
+  outline: none;
+}
+
+.logo {
+  position: relative;
+  z-index: 50;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+}
+
+.cart_link {
+  position: relative;
+  justify-self: end;
+  width: 30px;
+  height: 30px;
+  outline: none;
+}
+
+.cart_link svg {
+  width: 100%;
+  height: 100%;
+  transition: color var(--hover-time) ease;
+}
+
+.cart_total {
+  position: absolute;
+  bottom: -30%;
+  right: -30%;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  width: 22px;
+  height: 22px;
+
+  background-color: var(--white-color);
+  border: 2px solid var(--black-color);
+  border-radius: 50%;
+  color: var(--ui-color);
+  transition: border-color var(--hover-time) ease;
+}
+
+@media (min-width: 762px) {
+  .cart_link:focus .cart_total {
+    border-color: var(--92-color);
+  }
+
+  .cart_link:focus svg {
+    color: var(--92-color);
+  }
+
+  .cart_link:hover svg {
+    color: var(--ui-color);
+  }
+
+  .cart_link:hover .cart_total {
+    border-color: var(--ui-color);
+  }
+
+  .cart_link:active {
+    top: 1px;
+  }
+}
+
+@media (max-width: 762px) {
+  .header_wrapper {
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100px;
+    padding: 10px 15px;
+    background-color: var(--white-color);
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 120px 15px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 100px;
+    grid-template-areas:
+      "nav nav"
+      "btn cart";
+    justify-items: center;
+    background-color: var(--blur-color);
+
+    transform: translateX(-100%);
+    transition: transform var(--hover-time) ease;
+  }
+
+  .menu.active {
+    transform: translateX(0);
+  }
+
+  .cart_link {
+    grid-area: cart;
+    justify-self: center;
+    width: 50px;
+    height: 50px;
+  }
+
+  .btn_wrapper {
+    grid-area: btn;
+  }
+}
