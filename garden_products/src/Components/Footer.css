@@ -1,0 +1,73 @@
+
+
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .footer-h1 {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 70.4px;
+    text-align: left;
+    margin-left: 32px;
+ } 
+
+  .footer-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: Fill (580px);
+    height: Fill (150px); 
+    border-radius: 12px;
+  }
+  
+  .footer-h3{
+   color: #8B8B8B;
+   font-family: 'Montserrat';
+   font-size: 20px;
+   font-weight: 500;
+   line-height: 26px;
+   
+   letter-spacing: 0em;
+   text-align: left;
+
+  }
+
+  .card {
+    color: #282828;
+    font-family: 'Montserrat';
+    background: #F1F3F4;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 44px;
+    flex: 1 0 47%; 
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 32px;
+  }
+  
+  .maps-container {
+    flex-wrap: wrap; 
+    margin: 32px;
+    width: 1360px;
+    height: 350px;
+  }
+  
+  
+  .map.full-width {
+    flex: 1 0 100%; 
+    margin-right: 0;
+  }
+
+  @media (max-width: 768px) {
+    .footer-cards {
+      width: 100%;
+    }
+    
+  }
+  
