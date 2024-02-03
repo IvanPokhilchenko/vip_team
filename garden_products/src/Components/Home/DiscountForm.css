@@ -1,0 +1,126 @@
+.discount-form-container {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  background: linear-gradient(261deg, #0B710B 32.63%, #393 98.96%);
+  padding: 20px; 
+  box-sizing: border-box; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 80px;
+}
+
+.first-oder-h1 {
+  color: #FFF;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 110%; 
+  padding-top: 32px;
+  margin-bottom: 0;
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.container-img-input {
+  width: 100%;
+  max-width: 1296px; 
+  display: flex;
+  justify-content:space-between; 
+  margin-top: 24px;
+  gap: 10px;
+}
+
+.input-form {
+  width: 100%; 
+  max-width: 516px;
+  height: 296px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.input-g {
+  width: 100%; 
+  max-width: 516px;
+  height: 58px;
+  padding: 10px 32px;
+  background: linear-gradient(261deg, #0B710B 32.63%, #393 98.96%);
+  border-radius: 6px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.input-g::placeholder {
+  color: #FFF;
+}
+
+.button-discount {
+  width: 100%;
+  max-width: 516px;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background: #FFF;
+  border: none;
+  color: #282828;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 32px;
+}
+
+.discount-image {
+  position: static;
+  width: 100%;
+  max-width: 748px;
+  height: 360px;
+  background-image: url(./discount_form.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex: none;
+margin-bottom: -20px;
+}
+@media (max-width: 1440px) {
+  .discount-form-container {
+    padding: 20px 40px;
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .discount-form-container {
+    padding: 20px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .discount-form-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .discount-image {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 360px) {
+  .button-discount {
+    max-width: 80%;
+  }
+}

@@ -1,0 +1,257 @@
+.container {
+  width: 100%;
+  max-width: 1360px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  margin: 0 auto;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+
+.categories-text {
+  color: #282828;
+  font-family: Montserrat;
+  font-size: 64px;
+  line-height: 110%; 
+  font-weight: 700;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: #DDD;
+  margin-left: 32px;
+}
+
+.all-text,
+.all-texts {
+  width: 200px;
+  color: #8B8B8B;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 126%;
+  padding: 8px 16px;
+  border: 1px solid #DDD;
+}
+
+.all-texts {
+  display: none; /* Начально скрыто, может быть переопределено для адаптации */
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 30px;
+}
+
+li {
+  text-align: center;
+  max-width: 1360px;
+  margin-bottom: 40px;
+}
+
+.category-images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  width: 316px;
+  height: 350px;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+  border: 1px solid rgb(221, 221, 221);
+border-radius: 12px;
+}
+
+.text {
+  color: #282828;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* Медиа-запросы для адаптации на разные экраны */
+
+@media (max-width: 1360px) {
+  .container {
+    padding: 0 20px; /* Изменяем отступы для адаптации */
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Переходим на столбцы для мобильных устройств */
+    align-items: stretch; /* Растягиваем элементы по ширине */
+  }
+
+  .all-text {
+    display: none; /* Скрываем ненужный текст на мобильных устройствах */
+  }
+
+  .all-texts {
+    display: block; /* Показываем альтернативный текст */
+  }
+
+  .category-images {
+    width: 100%; /* Занимает всю ширину на мобильных устройствах */
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-text {
+    font-size: 40px; /* Уменьшаем размер заголовка для маленьких экранов */
+  }
+}
+
+@media (max-width: 360px) {
+  .categories-text {
+    font-size: 32px; /* Дополнительное уменьшение размера заголовка */
+  }
+}
+
+
+
+/* 
+
+@media (max-width: 1440px) and (min-width: 1000px) {
+  .container {
+    width: 1000px;
+  }
+  .categories-text {
+    width: 100%;
+    font-size: 60px;
+  margin-left: 100px; 
+
+  }
+  .all-text{
+    margin-right: 200px;
+  }
+  .category-images{
+    width: 200px;
+    height: 300px;
+    grid-template-columns: repeat(4, 1fr);
+grid-template-rows: repeat(1, 1fr);
+  }
+  
+}
+@media (min-width: 768px) and (max-width: 1000px) {
+  .container {
+    width: 728px;
+  }
+  .categories-text {
+    font-size: 60px;
+    width: 100%;
+    margin-left: 100px;
+  }
+  .all-text{
+    margin-right: 150px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 480px) {
+  .container {
+    width: 480px;
+  }
+  .categories-text {
+    font-size: 48px;
+    width: 100%;
+    margin-left: 100px;
+  }
+  .all-text{
+    margin-right: 150px;
+  }
+}
+
+@media (max-width: 480px) and (max-width: 360px) {
+  .container {
+    width: 360px;
+  }
+  .categories-text{
+    width: 100%;
+    font-size: 48px;
+  }
+ 
+}
+
+
+
+@media (max-width: 360px) {
+  .cont {
+    width: 100%;
+    max-width: 1360px;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    margin: 0 auto;
+    flex-direction: row;
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .categories-text {
+    font-size: 40px; 
+    margin-bottom: 20px; 
+  }
+
+  .category-images {
+    order: 1; 
+    margin-bottom: 10px; 
+  }
+
+  .text {
+    order: 2; 
+    font-size: 14px; 
+    margin-bottom: 20px; 
+  }
+  .all-text{
+    display: none;
+  }
+
+  .all-texts {
+    display: block;
+    order: 3; 
+    margin-top: 20px; 
+  }
+
+  .line {
+    display: none; 
+  }
+
+}
+
+
+
+
+@media (max-width: 768px) {
+  .categories-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; 
+  }
+}
+
+@media (max-width: 360px) {
+  .categories-list {
+    display: block;
+  }
+
+  .category-images {
+    max-width: 100%;
+    height: 318px;
+  }
+}
+
+
+
+ */
+
+
+
