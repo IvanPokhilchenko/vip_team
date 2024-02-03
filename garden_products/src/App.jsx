@@ -1,3 +1,13 @@
+import React from "react";
+import { Header } from "./components";
+import "./fonts/font.css";
+import "./reset.css";
+import "./App.css";
+
+function App() {
+  return <Header />;
+}
+export default App;
 import React from 'react'
 
 import HomePage from './Components/HomePage'
@@ -18,6 +28,7 @@ function App() {
     </div>
   )
 }
-
 export default App
+
+
 
