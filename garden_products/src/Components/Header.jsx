@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import { NavLink } from "react-router-dom";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import { Burger, Navigation } from "../";
-import logo from "../../media/images/logo.png";
-import styles from "./Header.module.css";
+import { Burger } from "./Burger/Burger";
+import { Navigation } from "./Navigation/Navigation";
+import logo from "../media/images/logo.png";
+import styles from "./Header/Header.module.css";
 
-export const Header = () => {
+ const Header = () => {
   //   const totalAmount = useSelector((store) => store.cart.totalAmount);
   const [active, setActive] = useState(false);
 
@@ -80,3 +81,6 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;
+

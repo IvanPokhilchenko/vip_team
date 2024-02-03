@@ -19,8 +19,8 @@ const Footer = () => {
 
         <div className="card">
           <h3 className='footer-h3'>Social Media</h3>
-          <img src="src/Components/icon/ic-whatsapp.png" alt="WatsApp" />
-          <img src="src/Components/icon/Insta.png" alt="Instagram" />   
+          <img src="../Components/icon/Insta.png" alt="WatsApp" />
+          <img src="Components/icon/Insta.png" alt="Instagram" />   
         </div>
 
         <div className="card">
