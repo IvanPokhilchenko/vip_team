@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import './RandomProducts.css';
 
 function RandomProducts() {
@@ -19,6 +20,10 @@ function RandomProducts() {
     }
   };
 
+  const handleClick = () => {
+    // Перенаправление на страницу категорий
+    window.location.href = '/discounted';
+};
   
 
   return (
@@ -26,7 +31,7 @@ function RandomProducts() {
         <div className='container'>
           <h2 className='categories-text'>Sale</h2>
           <div className='line'></div>
-          <span className='all-text' >All sales</span>
+          <Link className="all-text" to="/categories" onClick={handleClick}><span>All sales</span></Link>
         </div>
   
         <div className='products-list'>

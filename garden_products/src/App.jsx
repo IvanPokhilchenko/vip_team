@@ -8,6 +8,8 @@ import Footer from "./Components/Footer";
 import HomePage from "./Components/HomePage";
 import PageProductsByCategory from "./Components/ProductsByCategory/PageProductsByCategory";
 import PageDiscountedProduct from "./Components/DiscountedProduct/PageDiscountedProduct";
+import CategoryPage from './Components/CategoryPage';
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/categories/" element={<CategoryPage />} />
             <Route path="/categories/:categoryId" element={<PageProductsByCategory />} />
             <Route path="/discounted" element={<PageDiscountedProduct /> } />
           </Routes>
@@ -24,5 +27,7 @@ function App() {
       </Router>
     );
   }
+
+
 
 export default App;
