@@ -3,17 +3,17 @@ import CategoriesList from "../CategoriesList/CategoriesList";
 import "./Categories.css";
 
 function Categories() {
+  const handleClick = () => {
+    // Перенаправление на страницу категорий
+    window.location.href = '/categories';
+};
   return (
     <div className="cont">
       <div className="container">
         <p className="categories-text">Categories</p>
         <div className="line"></div>
-        <span className="all-text">All categories</span>
+        <Link className="all-text" to="/categories" onClick={handleClick}><span>All categories</span></Link>
       </div>
-
-      <span className="all-texts">
-        <Link to="/categories">All categories </Link>
-      </span>
 
       <div className="container">
         <CategoriesList limit={4} />

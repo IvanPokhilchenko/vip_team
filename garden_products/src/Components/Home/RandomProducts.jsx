@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import './RandomProducts.css';
 
 function RandomProducts() {
@@ -19,6 +20,10 @@ function RandomProducts() {
     }
   };
 
+  const handleClick = () => {
+    // Перенаправление на страницу категорий
+    window.location.href = '/discounted';
+};
   
 
   return (
@@ -26,7 +31,7 @@ function RandomProducts() {
         <div className='container'>
           <h2 className='categories-text'>Sale</h2>
           <div className='line'></div>
-          <span className='all-text' >All sales</span>
+          <Link className="all-text" to="/categories" onClick={handleClick}><span>All sales</span></Link>
         </div>
   
         <div className='products-list'>
@@ -60,30 +65,6 @@ function RandomProducts() {
           ))}
         </div>
       </div>
-  //   <div className='random-products-container'>
-  //       <div className='container'>
-  //       <h2 className='categories-text'>Sale</h2>
-  //       <div className='line'></div>
-  //       <span className='all-text' >All sales</span>
-  //     </div>
-
-  //     <div className='products-list'>
-  //       {randomProducts.map(product => (
-  //         <div key={product.id} className='product-item'>
-  //           <div className='product-image'>
-  //             <img src={"http://localhost:3333" + product.image} alt={product.title} />
-  //             <span className='discount-percent'>
-  //             </span>
-  //           </div>
-  //           <div className='product-details'>
-  //             <h3 className='product-title'>{product.title}</h3>
-  //             <p className='discount-price'>{product.discount_price}</p>
-  //             <p className='original-price'>{product.price}</p>
-  //           </div>
-  //         </div>
-  //       ))}
-  //     </div>
-  // </div>
   )
 }
 

@@ -22,7 +22,7 @@ function CategoriesList({ limit = Infinity }) {
   return (
     <ul className={styles.categories_list}>
       {categories.slice(0, limit).map((category) => (
-        <li className={styles.category_item}>
+        <li key={category.id} className={styles.category_item}>
           <Link to={`/categories/${category.id}`} state="category">
             <div className={styles.img_wrapper}>
               <img
