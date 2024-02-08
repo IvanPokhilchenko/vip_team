@@ -7,11 +7,23 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import HomePage from './Components/HomePage';
+import CategoryPage from './Components/CategoryPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <HomePage/>
+      },
+      {
+        path: "/categories",
+        element: <CategoryPage/>
+      }
+    ]
   },
 ]);
 
