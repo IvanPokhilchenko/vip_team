@@ -3,16 +3,15 @@ import "./fonts/font.css";
 import "./reset.css";
 import "./App.css";
 import Header from "./Components/Header";
-import Footer from './Components/Footer';
-import HomePage from './Components/HomePage'; 
+import Footer from "./Components/Footer";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <div>
       <Header />
-      <HomePage />
+      <Outlet />
       <Footer />
-      
     </div>
   );
 }
