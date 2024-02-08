@@ -1,14 +1,11 @@
-import React from 'react';
-import './ProductFilter.css';
+import React from 'react'
+import './DiscountedFilter.css'
 
-function ProductFilter({ sortBy, setSortBy, filterByDiscount, setFilterByDiscount, filterByPriceRange, setFilterByPriceRange }) {
+
+function DiscountedFilter({ sortBy, setSortBy, filterByDiscount, filterByPriceRange, setFilterByPriceRange }) {
 
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
-  };
-
-  const handleDiscountFilterChange = (e) => {
-    setFilterByDiscount(e.target.checked);
   };
 
   const handlePriceRangeChange = (e) => {
@@ -23,10 +20,7 @@ function ProductFilter({ sortBy, setSortBy, filterByDiscount, setFilterByDiscoun
         <input type="number" name="min" placeholder='from' onChange={handlePriceRangeChange} />
         <input type="number" name="max" placeholder='to' onChange={handlePriceRangeChange} />
       </div>
-      <div>
-        <label>Discounted items</label>
-        <input type="checkbox" className='checkbox' checked={filterByDiscount} onChange={handleDiscountFilterChange} />
-      </div>
+      
       <label>Sorted</label>
       <select value={sortBy} onChange={handleSortChange}>
         <option value="default">Default</option>
@@ -40,4 +34,6 @@ function ProductFilter({ sortBy, setSortBy, filterByDiscount, setFilterByDiscoun
   );
 }
 
-export default ProductFilter;
+export default DiscountedFilter
+
+
