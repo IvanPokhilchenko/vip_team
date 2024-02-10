@@ -9,6 +9,7 @@ import HomePage from "./Components/HomePage";
 import PageProductsByCategory from "./Components/ProductsByCategory/PageProductsByCategory";
 import PageDiscountedProduct from "./Components/DiscountedProduct/PageDiscountedProduct";
 import CategoryPage from './Components/CategoryPage';
+import AllProducts from "./Components/all_products/AllProducts";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/categories/" element={<CategoryPage />} />
             <Route path="/categories/:categoryId" element={<PageProductsByCategory />} />
             <Route path="/discounted" element={<PageDiscountedProduct /> } />
+            <Route path="/products" element={<AllProducts /> } />
           </Routes>
           <Footer />
         </div>

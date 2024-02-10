@@ -33,8 +33,9 @@ function RandomProducts() {
           <div className='line'></div>
           <Link className="all-text" to="/categories" onClick={handleClick}><span>All sales</span></Link>
         </div>
-  
-        <div className='products-list'>
+
+          {/* <Link className='products-list'></Link> */}
+          <div className='products-list'>
           {/* Объединяем товары из сервера и локальные образцы товаров и отображаем их */}
           {[...randomProducts].map(product => (
             <div key={product.id} className='product-item'>

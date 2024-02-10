@@ -2,21 +2,45 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import './AllProducts.css';
+import ProductFilter from '../ProductsByCategory/ProductFilter';
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
+  const [sortBy, setSortBy] = useState('default');
+  const [filterByDiscount, setFilterByDiscount] = useState(false);
+  const [filterByPriceRange, setFilterByPriceRange] = useState({ min: 0, max: 1000 });
 
   useEffect(() => {
-  
-    axios.get('http://localhost:3333/products/all')
-      .then(response => {
-        setProducts(response.data);
-      })
-      .catch(error => {
-        console.error('Ошибка при загрузке категорий:', error);
-      });
-  }, []);
+    fetchProducts();
+  }, [sortBy, filterByDiscount, filterByPriceRange]);
 
+
+ 
+    const fetchProducts = async () => {
+  try {
+    const response = await axios.get('http://localhost:3333/products/all');
+    const data = await response.data;
+
+    let sortedProducts = [...data];
+    if (filterByDiscount) {
+      sortedProducts = sortedProducts.filter(product => product.discont_price);
+    }
+    sortedProducts = sortedProducts.filter(product => product.price >= filterByPriceRange.min && product.price <= filterByPriceRange.max);
+
+    // Apply sorting
+    if (sortBy === 'newest') {
+      sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    } else if (sortBy === 'price-high-low') {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    } else if (sortBy === 'price-low-high') {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    }
+    
+    setProducts(sortedProducts);
+  } catch (error) {
+    console.error("Ошибка при загрузке товаров:", error);
+  }
+};
 
   return (
     <div className='cont-all-products'>
@@ -25,46 +49,48 @@ const AllProducts = () => {
           >Main page</p>
           <p className='allpr-texts' 
           >Categories</p>
-        <p className='allproducts-text'
-          >All products</p>
       </div>
-     
-      <ul className='allpr-ul'>
+      <div><p className='allproducts-text'>All products</p>
+      <ProductFilter
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          filterByDiscount={filterByDiscount}
+          setFilterByDiscount={setFilterByDiscount}
+          filterByPriceRange={filterByPriceRange}
+          setFilterByPriceRange={setFilterByPriceRange}
+        />
+      </div>
+      <div className='products-list'>
         {products.map((product) => (
-          <li className='allpr-li' key={product.id}>
+          <div className='product-item' key={product.id}>
 
-             <Link to={`/allproducts/${products.id}`} state="category">
-            <div className='img_wrapper'>
-              <img
-                src={`http://localhost:3333${product.image}`}
-                alt={product.title}
-              />
-            </div> 
+             {/* <Link to={`/products/${products.id}`} state="category"> */}
+             <div className='product-image'>
+                <img src={`http://localhost:3333${product.image}`} alt={product.title} />
+            
+                {product.discont_price && (
+                  <span className='discount-percent'>
+                    {`-${Math.round((1 - (product.discont_price / product.price)) * 100)}% `}
+                  </span>
+                )}
+              </div>
 
-            <div className="all-product-details">
-               <h3 className="all-product-title">{product.title}</h3>
-               <div className="all-price-container">
-                  {product.discont_price && (
-            <p className="allp-discount-price">
-              ${product.discont_price}
-            </p>
-          )}
-          <p
-            className={
-              product.discont_price
-                ? "original-price discounted"
-                : "original-price"
-            }
-          >
-            ${product.price}
-          </p>
+              <div className='product-details'>
+  <h3 className='product-title'>{product.title}</h3>
+  <div className='price-container'>
+    {product.discont_price && (
+      <p className='discount-price'>${product.discont_price}</p>
+    )}
+    <p className={product.discont_price ? 'original-price discounted' : 'original-price'}>
+      ${product.price}
+    </p>
+  </div>
+</div>
+
+          {/* </Link> */}
           </div>
-          </div>
-
-          </Link>
-          </li>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
