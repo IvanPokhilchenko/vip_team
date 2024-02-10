@@ -1,0 +1,51 @@
+.container {
+  width: 100%;
+  max-width: 1360px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  margin: 0 auto;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+
+.categories-text {
+  color: #282828;
+  font-family: Montserrat;
+  font-size: 64px;
+  line-height: 110%;
+  font-weight: 700;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: #ddd;
+  margin-left: 32px;
+}
+
+.all-text{
+  width: 200px;
+  color: #8b8b8b;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 126%;
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+}
+
+.all-texts {
+  display: none; /* Начально скрыто, может быть переопределено для адаптации */
+}
+
+@media (max-width: 768px) {
+  .all-text {
+    display: none; /* Скрываем ненужный текст на мобильных устройствах */
+  }
+
+  .all-texts {
+    display: block; /* Показываем альтернативный текст */
+  }
+}

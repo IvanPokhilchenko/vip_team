@@ -35,7 +35,7 @@ export const Navigation = ({ ...other }) => {
         <li>
           <NavLink
             className={styles.nav_link}
-            to="/products"
+            to="/discounted"
             state="sale"
             {...other}
           >
