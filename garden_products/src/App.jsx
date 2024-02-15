@@ -10,6 +10,7 @@ import PageProductsByCategory from "./Components/ProductsByCategory/PageProducts
 import PageDiscountedProduct from "./Components/DiscountedProduct/PageDiscountedProduct";
 import CategoryPage from './Components/CategoryPage';
 import AllProducts from "./Components/all_products/AllProducts";
+import ProductDetailPage from "./Components/product_page/ProductDetailPage";
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
             <Route path="/categories/:categoryId" element={<PageProductsByCategory />} />
             <Route path="/discounted" element={<PageDiscountedProduct /> } />
             <Route path="/products" element={<AllProducts /> } />
+            <Route path="/products/:productId" element={<ProductDetailPage />} />
+  
           </Routes>
           <Footer />
         </div>

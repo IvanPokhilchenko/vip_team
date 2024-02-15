@@ -38,16 +38,17 @@ const AllProducts = () => {
     
     setProducts(sortedProducts);
   } catch (error) {
-    console.error("Ошибка при загрузке товаров:", error);
+    console.error("Error fetching products:", error);
   }
 };
 
   return (
     <div className='cont-all-products'>
       <div  className='container-all-products'>
-          <p className='allpr-text' 
+          <p className='allpr-text' onClick={() => window.location.href = 'http://localhost:3000/'}
           >Main page</p>
-          <p className='allpr-texts' 
+          <div className="line"></div>
+          <p className='allpr-texts' onClick={() => window.location.href = 'http://localhost:3333/categories/all'}
           >Categories</p>
       </div>
       <div><p className='allproducts-text'>All products</p>
@@ -64,7 +65,9 @@ const AllProducts = () => {
         {products.map((product) => (
           <div className='product-item' key={product.id}>
 
-             {/* <Link to={`/products/${products.id}`} state="category"> */}
+        
+             <Link to={`/products/${product.id}`} >
+              {product.name}
              <div className='product-image'>
                 <img src={`http://localhost:3333${product.image}`} alt={product.title} />
             
@@ -76,18 +79,18 @@ const AllProducts = () => {
               </div>
 
               <div className='product-details'>
-  <h3 className='product-title'>{product.title}</h3>
-  <div className='price-container'>
-    {product.discont_price && (
-      <p className='discount-price'>${product.discont_price}</p>
-    )}
-    <p className={product.discont_price ? 'original-price discounted' : 'original-price'}>
-      ${product.price}
+           <h3 className='product-title'>{product.title}</h3>
+           <div className='price-container'>
+               {product.discont_price && (
+           <p className='discount-price'>${product.discont_price}</p>
+               )}
+           <p className={product.discont_price ? 'original-price discounted' : 'original-price'}>
+               ${product.price}
     </p>
   </div>
 </div>
 
-          {/* </Link> */}
+          </Link> 
           </div>
         ))}
       </div>
