@@ -8,31 +8,32 @@ import Footer from "./Components/Footer";
 import HomePage from "./Components/HomePage";
 import PageProductsByCategory from "./Components/ProductsByCategory/PageProductsByCategory";
 import PageDiscountedProduct from "./Components/DiscountedProduct/PageDiscountedProduct";
-import CategoryPage from './Components/CategoryPage';
+import CategoryPage from "./Components/CategoryPage";
 import AllProducts from "./Components/all_products/AllProducts";
 import ProductDetailPage from "./Components/product_page/ProductDetailPage";
-
+import Custom404Page from "./Components/Custom404Page";
 
 function App() {
   return (
-      <Router>
-        <div>
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/categories/" element={<CategoryPage />} />
-            <Route path="/categories/:categoryId" element={<PageProductsByCategory />} />
-            <Route path="/discounted" element={<PageDiscountedProduct /> } />
-            <Route path="/products" element={<AllProducts /> } />
-            <Route path="/products/:productId" element={<ProductDetailPage />} />
-  
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
-    );
-  }
-
-
+    <Router>
+      <div>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/categories/" element={<CategoryPage />} />
+          <Route
+            path="/categories/:categoryId"
+            element={<PageProductsByCategory />}
+          />
+          <Route path="/discounted" element={<PageDiscountedProduct />} />
+          <Route path="/products" element={<AllProducts />} />
+          <Route path="/products/:productId" element={<ProductDetailPage />} />
+          <Route path="*" element={<Custom404Page />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
 
 export default App;
