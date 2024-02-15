@@ -10,6 +10,7 @@ import PageProductsByCategory from "./Components/ProductsByCategory/PageProducts
 import PageDiscountedProduct from "./Components/DiscountedProduct/PageDiscountedProduct";
 import CategoryPage from './Components/CategoryPage';
 import AllProducts from "./Components/all_products/AllProducts";
+import BasketPage from "./Components/Basket/BasketPage";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/categories/:categoryId" element={<PageProductsByCategory />} />
             <Route path="/discounted" element={<PageDiscountedProduct /> } />
             <Route path="/products" element={<AllProducts /> } />
+            <Route path="/cart" element={<BasketPage /> } />
           </Routes>
           <Footer />
         </div>
