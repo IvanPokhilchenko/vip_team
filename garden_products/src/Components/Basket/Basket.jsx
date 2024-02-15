@@ -1,18 +1,41 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './Basket.css';
 
-const Basket = ({ items, removeFromCart, updateQuantity }) => {
+const Basket = () => {
+  const items = useSelector(state => state.cart.items);
+  const dispatch = useDispatch();
+
+
+
   const calculateTotal = () => {
     return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  //   let  totalPrice = items.reduce((total, item) => {
+  //     if(item.discont_price){
+  //         return  total + (item.count * item.discont_price)
+  //     }else {
+  //         return total + (item.count * item.price)
+  //     }
+  // }, 0) 
+  //   return  (Math.round(totalPrice * 100)/100).toFixed(2)
   };
+
+  const removeFromCart = (itemId) => {
+    dispatch({ type: 'REMOVE_FROM_CART', payload: itemId });
+  };
+
+  const updateQuantity = (itemId, newQuantity) => {
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { itemId, quantity: newQuantity } });
+  };
+
   const continueShopping = () => {
     window.location.href = '/products';
   };
   if (!items || items.length === 0) {
     return (
       <div className="shopping-cart-empty">
-         <div className='shopping'>
-          <h2 className='shopping-cart'>Shopping cart</h2>
+         <div className='shop'>
+          <h2 className='shopping-c'>Shopping cart</h2>
           <div className='lines'></div>
           <span  className="all-text">Back to the store</span>
         </div>
@@ -25,10 +48,14 @@ const Basket = ({ items, removeFromCart, updateQuantity }) => {
 
 
   return (
+    <>
+    <div className='shop-order'>
+          <h2 className='shopping-c'>Shopping cart</h2>
+          <div className='lines'></div>
+          <span  className="all-text">Back to the store</span>
+      </div>
     <div className="shopping-cart">
       <div className="cart-items">
-        <h2>Shopping cart</h2>
-        <hr />
         {items.map(item => (
           <div className="cart-item" key={item.id}>
             <div className="item-details">
@@ -36,32 +63,35 @@ const Basket = ({ items, removeFromCart, updateQuantity }) => {
               <div className="item-info">
                 <p>{item.title}</p>
                 <div className="quantity">
-                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
-                  <input type="text" value={item.quantity} readOnly />
-                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
+                  <button className='counter' onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
+                  <p className='number'>{item.quantity}</p>
+                  <button className='counter' onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
                 </div>
               </div>
             </div>
             <div className="item-price">
               {item.discountedPrice ? <p>${item.discountedPrice}</p> : <p>${item.price}</p>}
               {item.discountedPrice && <p className="original-price">${item.price}</p>}
-              <button onClick={() => removeFromCart(item.id)}>Remove</button>
+              <button className='remove' onClick={() => removeFromCart(item.id)}>&times;</button>
             </div>
           </div>
         ))}
       </div>
       <div className="order-details">
-        <h3>Order details</h3>
+        <div className='inform'>
+        <h3 className='order-h3'>Order details</h3>
         <p>{items.length} items</p>
         <p>Total: ${calculateTotal()}</p>
+        </div>
         <div className="user-details">
           <input type="text" placeholder="Name" />
           <input type="text" placeholder="Phone number" />
           <input type="email" placeholder="Email" />
-          <button>Order</button>
+          <button className='order'>Order</button>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -24,7 +24,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/categories/" element={<CategoryPage />} />
+            <Route path="/categories" element={<CategoryPage />} />
             <Route path="/categories/:categoryId" element={<PageProductsByCategory />} />
             <Route path="/discounted" element={<PageDiscountedProduct /> } />
             <Route path="/products" element={<AllProducts /> } />
