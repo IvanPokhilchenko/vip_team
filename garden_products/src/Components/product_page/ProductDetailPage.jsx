@@ -46,27 +46,41 @@ const ProductDetailPage = () => {
 
   return (
     <div>
-      <div className='container-all-products'>
-        <Link to="/">Main page</Link>
+      <div className="container-all-products">
+        <Link className="det-text" to="/">Main page</Link>
         <div className="line"></div>
-        <Link to="/categories">Categories</Link>
+        <Link  className='det-text'to="/categories">Categories</Link>
         <div className="line"></div>
-        <Link to={"/categories/:categoryId"}>Tools and equipment</Link>
+        <Link className="det-text" to={"/categories/:categoryId"}>Tools and equipment</Link>
         <div className="line"></div>
-        <Link to={`/products/:productId`}>Secateurs</Link>
+        <Link className="det-text-1" to={`/products/:productId`}>Secateurs</Link>
       </div>
       {product.map((product) => (
-      <div className='container-pr-detail' key={product.id}>
-        <img className='' src={ "http://localhost:3333" + product.image} alt={product.title} />
-        <h2>{product.title}</h2>
-        <p> ${product.price}</p>
-        <p>Description: {product.description}</p>
-        <div>
-          <button onClick={() => handleQuantityChange(-1)}>-</button>
-          <span>{quantity}</span>
-          <button onClick={() => handleQuantityChange(1)}>+</button>
+      <div className="container-pr-detail" key={product.id}>
+
+        <div className='container-img-dt'>
+        <img   src={ "http://localhost:3333" + product.image} alt={product.title} />
         </div>
-        <button className='btn' onClick={addToCart}>Add to Cart</button>
+
+         <div className='container-detail'>
+         <h2 className='pr-t'>{product.title}</h2>
+         <p className='pr-p'> ${product.price}</p>
+         <p className='pr-d-p'> ${product.discont_price} </p>
+         <div className='container-bt'>
+          <div className="btn-1">
+          <button className="btn1" onClick={() => handleQuantityChange(-1)}>-</button>
+          <span className="btn2">{quantity}</span>
+          <button className="btn1" onClick={() => handleQuantityChange(1)}>+</button>
+        </div>
+        <button className="btn" onClick={addToCart}>Add to Cart</button>
+        </div>
+        <p className='descr'>Description
+           </p>
+           <p className='descr1'>{product.description}</p>
+
+
+         </div>
+        
       </div>
       ))}
     </div>
