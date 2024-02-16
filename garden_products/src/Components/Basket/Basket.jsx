@@ -40,7 +40,7 @@ const Basket = () => {
           <span  className="all-text">Back to the store</span>
         </div>
         <p className='looks'>Looks like you have no items in your basket currently.</p>
-        <button onClick={continueShopping}>Continue Shopping</button>
+        <button className='continue-btn' onClick={continueShopping}>Continue Shopping</button>
       </div>
     );
   }
