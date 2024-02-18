@@ -45,7 +45,7 @@ const Basket = () => {
     );
   }
 
-
+  console.log(items);
 
   return (
     <>
@@ -56,8 +56,8 @@ const Basket = () => {
       </div>
     <div className="shopping-cart">
       <div className="cart-items">
-        {items.map(item => (
-          <div className="cart-item" key={item.id}>
+        {items.map((item, index) => (
+          <div className="cart-item" key={index}>
             <div className="item-details">
               <img src={item.image} alt={item.title} />
               <div className="item-info">
