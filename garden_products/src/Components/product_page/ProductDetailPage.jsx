@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './ProductDetailPage.css';
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [addedToCart, setAddedToCart] = useState(false); 
   const dispatch = useDispatch(); 
+  const addedProducts = useSelector(state => state.cart.addedProducts); 
 
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const ProductDetailPage = () => {
   const fetchProduct = async (productId) => {
     try {
       const response = await axios.get(`http://localhost:3333/products/${productId}`);
-      setProduct(response.data);
+      setProduct(...response.data);
     } catch (error) {
       console.error('Error fetching product:', error);
     }
@@ -33,11 +35,12 @@ const ProductDetailPage = () => {
   };
 
   const addToCart = () => {
-    if (product) {
-      const cartItem = { ...product, quantity: quantity};
-     
+    if (product && !addedProducts.includes(product.id) && product && !addedToCart) {
+      const cartItem = { ...product, quantity: quantity };
       dispatch({ type: 'ADD_TO_CART', payload: cartItem });
+      setAddedToCart(true);
     }
+
   };
 
   if (!product) {
@@ -55,7 +58,7 @@ const ProductDetailPage = () => {
         <div className="line"></div>
         <Link className="det-text-1" to={`/products/:productId`}>Secateurs</Link>
       </div>
-      {product.map((product) => (
+      
       <div className="container-pr-detail" key={product.id}>
 
         <div className='container-img-dt'>
@@ -72,7 +75,7 @@ const ProductDetailPage = () => {
           <span className="btn2">{quantity}</span>
           <button className="btn1" onClick={() => handleQuantityChange(1)}>+</button>
         </div>
-        <button className="btn" onClick={addToCart}>Add to Cart</button>
+        <button className="btn" onClick={addToCart}>{addedToCart ? 'Added' : 'Add to Cart'}</button>
         </div>
         <p className='descr'>Description
            </p>
@@ -82,7 +85,7 @@ const ProductDetailPage = () => {
          </div>
         
       </div>
-      ))}
+     
     </div>
   );
 };
