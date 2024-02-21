@@ -34,14 +34,53 @@ const ProductDetailPage = () => {
     }
   };
 
+
   const addToCart = () => {
+    const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
     if (product && !addedProducts.includes(product.id) && product && !addedToCart) {
       const cartItem = { ...product, quantity: quantity };
-      dispatch({ type: 'ADD_TO_CART', payload: cartItem });
+      localStorage.setItem('cartItems', JSON.stringify([...savedCartItems, cartItem]));
+      setAddedToCart(true);
+    } else if (product && addedProducts.includes(product.id)) {
+      // Если продукт уже добавлен, обновляем только количество
+      const updatedCartItems = savedCartItems.map(item => {
+        if (item.id === product.id) {
+          return { ...item, quantity: item.quantity + quantity };
+        }
+        return item;
+      });
+      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
       setAddedToCart(true);
     }
-
   };
+  // const addToCart = () => {
+  //   const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  //   const existingItemIndex = savedCartItems.findIndex(item => item.id === product.id);
+  
+  //   if (existingItemIndex !== -1) {
+  //     // Если товар уже есть в корзине, обновляем только его количество
+  //     const updatedCartItems = savedCartItems.map((item, index) => {
+  //       if (index === existingItemIndex) {
+  //         return { ...item, quantity: item.quantity + quantity };
+  //       }
+  //       return item;
+  //     });
+  //     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+  //   } else {
+  //     // Если товара еще нет в корзине, добавляем новый товар
+  //     const cartItem = { ...product, quantity: quantity };
+  //     localStorage.setItem('cartItems', JSON.stringify([...savedCartItems, cartItem]));
+  //   }
+  //   setAddedToCart(true);
+
+  // };
+
+  // const cartItem = { ...product, quantity: quantity };
+  // localStorage.setItem('cartItems', JSON.stringify([cartItem]));
+  
+  
+
 
   if (!product) {
     return <div>Loading...</div>;

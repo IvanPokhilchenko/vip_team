@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './Basket.css';
 
@@ -6,6 +6,12 @@ const Basket = () => {
   const items = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    // Проверка на наличие сохраненных товаров при загрузке компонента Basket
+    const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    // Загрузка сохраненных товаров в корзину
+    storedItems.forEach(item => dispatch({ type: 'ADD_TO_CART', payload: item }));
+  }, [dispatch]);
 
 
   const calculateTotal = () => {
@@ -22,6 +28,11 @@ const Basket = () => {
 
   const removeFromCart = (itemId) => {
     dispatch({ type: 'REMOVE_FROM_CART', payload: itemId });
+
+     // Удаление товара из LocalStorage при удалении из корзины
+     const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+     const updatedItems = storedItems.filter(item => item.id !== itemId);
+     localStorage.setItem('cartItems', JSON.stringify(updatedItems));
   };
 
   const updateQuantity = (itemId, newQuantity) => {
@@ -30,6 +41,16 @@ const Basket = () => {
       removeFromCart(itemId);
     } else {
       dispatch({ type: 'UPDATE_QUANTITY', payload: { itemId, quantity: newQuantity } });
+
+      // Обновление количества товара в LocalStorage
+      const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      const updatedItems = storedItems.map(item => {
+        if (item.id === itemId) {
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      });
+      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
     }  
   };
 
@@ -61,8 +82,8 @@ const Basket = () => {
       </div>
     <div className="shopping-cart">
       <div className="cart-items">
-        {items.map((item) => (
-          <div className="cart-item" key={item.id}>
+        {items.map((item, index) => (
+          <div className="cart-item" key={index}>
             <div className="item-details">
               <img src={"http://localhost:3333" + item.image} alt={item.title} />
               <div className="item-info">
@@ -95,7 +116,7 @@ const Basket = () => {
       <div className="order-details">
         <div className='inform'>
         <h3 className='order-h3'>Order details</h3>
-        <p>{items.length} items</p>
+        <p>{items.reduce((total, item) => total + item.quantity, 0)} items</p>
         <p>Total: ${calculateTotal()}</p>
         </div>
         <div className="user-details">
