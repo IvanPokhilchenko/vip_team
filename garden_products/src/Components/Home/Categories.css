@@ -1,4 +1,4 @@
-.container {
+.containers {
   width: 100%;
   max-width: 1360px;
   display: flex;
@@ -40,12 +40,55 @@
   display: none; /* Начально скрыто, может быть переопределено для адаптации */
 }
 
-@media (max-width: 768px) {
+
+
+/* Медиа-запросы для адаптации на разные экраны */
+@media (min-width: 1440px) {
+  .container{}
+  .categories-text{}
+  .line{}
+  .all-text{}
+}
+
+@media (min-width: 1000px) and (max-width:1440px) {
+  
+
+}
+@media (min-width: 768px) and (max-width: 1000px) {
+  .categories-text{}
+  .line{}
+  .all-text{}
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+ 
+
+}
+@media (max-width: 360px) {
+  .cont {
+    display: flex;
+    flex-direction: column;
+  }
+  .containers {
+    display: flex;
+    flex-direction: column;
+  }
+  .categories-text {
+    order: 0;
+  }
+  .container {
+    order: 1;
+  }
   .all-text {
-    display: none; /* Скрываем ненужный текст на мобильных устройствах */
+    order: 2;
+  }
+  .line {
+    display: none;
   }
 
-  .all-texts {
-    display: block; /* Показываем альтернативный текст */
-  }
 }
+

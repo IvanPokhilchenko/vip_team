@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import DiscountedProduct from './DiscountedProduct';
 import './PageDiscountedProduct.css';
+import { Link } from "react-router-dom";
 import DiscountedFilter from './DiscountedFilter';
 
 function PageDiscountedProduct() {
@@ -52,7 +53,9 @@ function PageDiscountedProduct() {
      />
     <div className="products-list">
       {discountedProducts.map(product => (
+      <Link to={`/products/${product.id}`}>
         <DiscountedProduct key={product.id} product={product} />
+      </Link>
       ))}
     </div>
   </div>

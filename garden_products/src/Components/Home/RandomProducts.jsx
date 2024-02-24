@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import './RandomProducts.css';
+import './RandomProducts.css'
 
 function RandomProducts() {
   const [randomProducts, setRandomProducts] = useState([]);
@@ -28,7 +28,7 @@ function RandomProducts() {
 
   return (
       <div className='random-products-container'>
-        <div className='container'>
+        <div className='containers'>
           <h2 className='categories-text'>Sale</h2>
           <div className='line'></div>
           <Link className="all-text" to="/categories" onClick={handleClick}><span>All sales</span></Link>
@@ -38,6 +38,7 @@ function RandomProducts() {
           <div className='products-list'>
           {/* Объединяем товары из сервера и локальные образцы товаров и отображаем их */}
           {[...randomProducts].map(product => (
+            <Link to={`/products/${product.id}`}>
             <div key={product.id} className='product-item'>
               <div className='product-image'>
                 {/* Отображаем изображение товара */}
@@ -63,6 +64,7 @@ function RandomProducts() {
   </div>
 </div>
             </div>
+            </Link>
           ))}
         </div>
       </div>

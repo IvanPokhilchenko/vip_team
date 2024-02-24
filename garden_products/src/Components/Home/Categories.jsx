@@ -9,7 +9,7 @@ function Categories() {
 };
   return (
     <div className="cont">
-      <div className="container">
+      <div className="containers">
         <p className="categories-text">Categories</p>
         <div className="line"></div>
         <Link className="all-text" to="/categories" onClick={handleClick}><span>All categories</span></Link>

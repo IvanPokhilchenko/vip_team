@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ProductsByCategory.css';
+import { Link } from "react-router-dom";
 import ProductFilter from './ProductFilter';
 
 function ProductsByCategory({ categoryId }) {
@@ -65,6 +66,7 @@ function ProductsByCategory({ categoryId }) {
           <div className="products-list">
             {products &&
               products.map((product) => (
+                <Link to={`/products/${product.id}`}>
                 <div key={product.id} className="product-item">
                   <div className="product-image">
                     <img
@@ -99,6 +101,7 @@ function ProductsByCategory({ categoryId }) {
                     </div>
                   </div>
                 </div>
+                </Link>
               ))}
           </div>
         </div>
