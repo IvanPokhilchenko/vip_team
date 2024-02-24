@@ -15,7 +15,7 @@ const Footer = () => {
           <p>+49 999 999 99 99</p>
         </div>
 
-        <div className="card card-soc-work">
+        <div className="card ">
           <h3 className='footer-h3'>Socials</h3>
           <div className='social-image'>
           <div className='social social-instagram'/> 
@@ -23,12 +23,12 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="card card-width">
+        <div className="card ">
           <h3 className='footer-h3'>Address</h3>
           <p>Linkstraße 2, 8 OG, 10 785, Berlin, Deutschland</p>
         </div>
 
-        <div className="card card-soc-work">
+        <div className="card ">
           <h3 className='footer-h3'>Working Hours</h3>
           <p>24 hours a day</p>
         </div>
