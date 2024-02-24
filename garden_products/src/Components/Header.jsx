@@ -7,10 +7,18 @@ import { Burger } from "./Burger/Burger";
 import { Navigation } from "./Navigation/Navigation";
 import logo from "../media/images/logo.png";
 import styles from "./Header/Header.module.css";
+import { useSelector } from "react-redux";
+
 
  const Header = () => {
-  //   const totalAmount = useSelector((store) => store.cart.totalAmount);
   const [active, setActive] = useState(false);
+  const [itemsInCart, setItemsInCart] = useState(0); // Локальное состояние для количества товаров в корзине из Redux Store
+
+  const itemsCountInCart  = useSelector(state => state.cart.items.length); // получение количества товаров в корзине
+
+  useEffect(() => {
+    setItemsInCart(itemsCountInCart); // Установка начального значения из Redux Store
+  }, [itemsCountInCart]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -71,7 +79,7 @@ import styles from "./Header/Header.module.css";
                 onClick={() => setActive(false)}
               >
                 <HiOutlineShoppingBag />
-                <p className={styles.cart_total}>{5}</p>
+                <p className={styles.cart_total}>{itemsCountInCart}</p>
               </NavLink>
             </div>
             <Burger onClick={toggleActive} active={active && "active"} />

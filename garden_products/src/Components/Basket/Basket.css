@@ -7,7 +7,25 @@
   align-items: flex-start;
   padding: 0px;
 }
+.continue-btn{
+max-width: 313px;
+width: 100%;
+height: 58px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 16px 56px 16px 56px;
+margin: 32px 50px;
+border-radius: 6px;
+background: rgb(51, 153, 51);
+color: rgb(255, 255, 255);
+font-family: Montserrat;
+font-size: 20px;
+font-weight: 600;
+text-align: center;
 
+}
 
 .shop{
   max-width: 1440px;
@@ -52,7 +70,7 @@ font-weight: 500;
 line-height: 130%;
 letter-spacing: 0%;
 text-align: left;
-padding-left: 50px;
+margin: 20px 50px;
 }
 
 .shopping-cart {
@@ -83,11 +101,11 @@ padding-left: 50px;
 }
 
 .cart-item img {
-  width: 200px;
-  height: auto;
-  margin: 0px 32px;
+  max-width: 200px;
+  width: 100%;
+  height: 180px;
+  margin-right: 32px;
   box-sizing: border-box;
-/* grey divider */
 border: 1px solid rgb(221, 221, 221);
 border-radius: 12px 0px 0px 12px;
 
@@ -97,6 +115,58 @@ border-radius: 12px 0px 0px 12px;
   display: flex;
   align-items: center;
 }
+.item-title{
+  /* margin: 0px 16px; */
+  margin-bottom: 10px;
+  color: rgb(40, 40, 40);
+font-family: Montserrat;
+font-size: 20px;
+font-weight: 500;
+line-height: 130%;
+}
+
+
+.orig-price, .dis-price{
+max-width: 87px;
+width: 100%;
+height: 44px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding-left: 70px;
+
+color: rgb(40, 40, 40);
+font-family: Montserrat;
+font-size: 40px;
+font-weight: 600;
+line-height: 110%;
+letter-spacing: 0%;
+text-align: left;
+}
+.orig-price.discounted {
+width: 51px;
+height: 26px;
+display: flex;
+justify-content: center;
+align-items: center;
+/* padding: 5px; */
+
+flex: none;
+
+margin: 0px 16px;
+
+color: rgb(139, 139, 139);
+font-family: Montserrat;
+font-size: 20px;
+font-weight: 500;
+line-height: 130%;
+letter-spacing: 0%;
+text-align: left;
+text-decoration-line: line-through;
+}
+
+
 
 .quantity {
   display: flex;
@@ -106,7 +176,7 @@ border-radius: 12px 0px 0px 12px;
 .number {
 border-bottom: 1px solid rgb(221, 221, 221);
 border-top: 1px solid rgb(221, 221, 221);
-width: 110px;
+width: 96px;
 height: 58px;
 display: flex;
 flex-direction: column;

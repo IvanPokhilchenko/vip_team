@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './ProductDetailPage.css';
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [addedToCart, setAddedToCart] = useState(false); 
   const dispatch = useDispatch(); 
+  const addedProducts = useSelector(state => state.cart.addedProducts); 
 
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const ProductDetailPage = () => {
   const fetchProduct = async (productId) => {
     try {
       const response = await axios.get(`http://localhost:3333/products/${productId}`);
-      setProduct(response.data);
+      setProduct(...response.data);
     } catch (error) {
       console.error('Error fetching product:', error);
     }
@@ -32,13 +34,53 @@ const ProductDetailPage = () => {
     }
   };
 
+
   const addToCart = () => {
-    if (product) {
-      const cartItem = { ...product, quantity: quantity};
-     
-      dispatch({ type: 'ADD_TO_CART', payload: cartItem });
+    const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    if (product && !addedProducts.includes(product.id) && product && !addedToCart) {
+      const cartItem = { ...product, quantity: quantity };
+      localStorage.setItem('cartItems', JSON.stringify([...savedCartItems, cartItem]));
+      setAddedToCart(true);
+    } else if (product && addedProducts.includes(product.id)) {
+      // Если продукт уже добавлен, обновляем только количество
+      const updatedCartItems = savedCartItems.map(item => {
+        if (item.id === product.id) {
+          return { ...item, quantity: item.quantity + quantity };
+        }
+        return item;
+      });
+      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+      setAddedToCart(true);
     }
   };
+  // const addToCart = () => {
+  //   const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  //   const existingItemIndex = savedCartItems.findIndex(item => item.id === product.id);
+  
+  //   if (existingItemIndex !== -1) {
+  //     // Если товар уже есть в корзине, обновляем только его количество
+  //     const updatedCartItems = savedCartItems.map((item, index) => {
+  //       if (index === existingItemIndex) {
+  //         return { ...item, quantity: item.quantity + quantity };
+  //       }
+  //       return item;
+  //     });
+  //     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+  //   } else {
+  //     // Если товара еще нет в корзине, добавляем новый товар
+  //     const cartItem = { ...product, quantity: quantity };
+  //     localStorage.setItem('cartItems', JSON.stringify([...savedCartItems, cartItem]));
+  //   }
+  //   setAddedToCart(true);
+
+  // };
+
+  // const cartItem = { ...product, quantity: quantity };
+  // localStorage.setItem('cartItems', JSON.stringify([cartItem]));
+  
+  
+
 
   if (!product) {
     return <div>Loading...</div>;
@@ -57,7 +99,7 @@ const ProductDetailPage = () => {
         <div className="line"></div>
         <Link className="det-text-1" to={`/products/:productId`}>Secateurs</Link>
       </div>
-      {product.map((product) => (
+      
       <div className="container-pr-detail" key={product.id}>
 
         <div className='container-img-dt'>
@@ -76,7 +118,7 @@ const ProductDetailPage = () => {
           <span className="btn2">{quantity}</span>
           <button className="btn1" onClick={() => handleQuantityChange(1)}>+</button>
         </div>
-        <button className="btn" onClick={addToCart}>Add to Cart</button>
+        <button className="btn" onClick={addToCart}>{addedToCart ? 'Added' : 'Add to Cart'}</button>
         </div>
         <p className='descr'>Description
            </p>
@@ -86,7 +128,7 @@ const ProductDetailPage = () => {
          </div>
         
       </div>
-      ))}
+     
     </div>
   );
 };
