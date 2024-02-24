@@ -43,12 +43,13 @@ const AllProducts = () => {
 };
 
   return (
+    <div className='wrapper-all-p'>
     <div className='cont-all-products'>
       <div  className='container-all-products'>
           <p className='allpr-text' onClick={() => window.location.href = 'http://localhost:3000/'}
           >Main page</p>
           <div className="line"></div>
-          <p className='allpr-texts' onClick={() => window.location.href = 'http://localhost:3333/categories/all'}
+          <p className='allpr-text' onClick={() => window.location.href = 'http://localhost:3333/categories/all'}
           >Categories</p>
       </div>
       <div><p className='allproducts-text'>All products</p>
@@ -94,6 +95,7 @@ const AllProducts = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

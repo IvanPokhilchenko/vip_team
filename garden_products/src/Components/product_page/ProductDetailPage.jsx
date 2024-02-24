@@ -46,7 +46,9 @@ const ProductDetailPage = () => {
 
   return (
     <div>
-      <div className="container-all-products">
+       {/* Hide container-all-products on screens narrower than 768px */}
+      <div className="container-all-products" >
+      {/* // style={{ display: window.innerWidth >= 768 ? 'none' : 'block' }} >*/}
         <Link className="det-text" to="/">Main page</Link>
         <div className="line"></div>
         <Link  className='det-text'to="/categories">Categories</Link>
@@ -63,9 +65,11 @@ const ProductDetailPage = () => {
         </div>
 
          <div className='container-detail'>
-         <h2 className='pr-t'>{product.title}</h2>
-         <p className='pr-p'> ${product.price}</p>
-         <p className='pr-d-p'> ${product.discont_price} </p>
+           
+              <h2 className="pr-t">{product.title}</h2>
+              <p className="pr-p">${product.price}</p>
+              <p className="pr-d-p">${product.discount_price}</p>
+          
          <div className='container-bt'>
           <div className="btn-1">
           <button className="btn1" onClick={() => handleQuantityChange(-1)}>-</button>
