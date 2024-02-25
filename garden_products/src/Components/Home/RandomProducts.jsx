@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import './RandomProducts.css'
+// import './RandomProducts.css'
+import '../cardStyles.css'
 
 function RandomProducts() {
   const [randomProducts, setRandomProducts] = useState([]);
@@ -38,8 +39,8 @@ function RandomProducts() {
           <div className='products-list'>
           {/* Объединяем товары из сервера и локальные образцы товаров и отображаем их */}
           {[...randomProducts].map(product => (
-            <Link to={`/products/${product.id}`}>
-            <div key={product.id} className='product-item'>
+            <Link key={product.id}  to={`/products/${product.id}`}>
+            <div className='product-item'>
               <div className='product-image'>
                 {/* Отображаем изображение товара */}
                 <img src={"http://localhost:3333" + product.image} alt={product.title} />

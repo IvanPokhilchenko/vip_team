@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ProductsByCategory.css';
+import '../cardStyles.css';
 import { Link } from "react-router-dom";
 import ProductFilter from './ProductFilter';
 
@@ -49,7 +50,15 @@ function ProductsByCategory({ categoryId }) {
 
   return (
     <div>
+      <div  className='container-all-products'>
+      <Link className="det-text" to="/">Main page</Link>
+          <div className="line"></div>
+       <Link  className='det-text'to="/categories">Categories</Link>
+       <div className="line"></div>
+       <Link  className='det-texts'>Tools and equipment</Link>
+      </div>
       <p className='tools-h2'>Tools and equipment</p>
+      
        {/* Вставляем компонент ProductFilter */}
        <ProductFilter
         sortBy={sortBy}
@@ -65,9 +74,9 @@ function ProductsByCategory({ categoryId }) {
         <div>
           <div className="products-list">
             {products &&
-              products.map((product) => (
-                <Link to={`/products/${product.id}`}>
-                <div key={product.id} className="product-item">
+              products.map((product, index) => (
+                <Link key={product.id} to={`/products/${product.id}`}>
+                <div  className="product-item">
                   <div className="product-image">
                     <img
                       src={"http://localhost:3333" + product.image}

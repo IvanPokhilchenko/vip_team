@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import './AllProducts.css';
+import '../cardStyles.css';
 import ProductFilter from '../ProductsByCategory/ProductFilter';
 
 const AllProducts = () => {
@@ -46,13 +47,12 @@ const AllProducts = () => {
     <div className='wrapper-all-p'>
     <div className='cont-all-products'>
       <div  className='container-all-products'>
-          <p className='allpr-text' onClick={() => window.location.href = 'http://localhost:3000/'}
-          >Main page</p>
+      <Link className="det-text" to="/">Main page</Link>
           <div className="line"></div>
-          <p className='allpr-text' onClick={() => window.location.href = 'http://localhost:3333/categories/all'}
-          >Categories</p>
+       <Link  className='det-texts'to="/products">All products</Link>
       </div>
-      <div><p className='allproducts-text'>All products</p>
+      <h1 className='products-h2'>All products</h1>
+      <div>
       <ProductFilter
           sortBy={sortBy}
           setSortBy={setSortBy}

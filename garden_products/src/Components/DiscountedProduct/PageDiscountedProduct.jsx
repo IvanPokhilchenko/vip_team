@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import DiscountedProduct from './DiscountedProduct';
-import './PageDiscountedProduct.css';
+import './DiscountedProduct.css';
+import '../cardStyles.css';
 import { Link } from "react-router-dom";
 import DiscountedFilter from './DiscountedFilter';
 
@@ -42,6 +43,11 @@ function PageDiscountedProduct() {
 
   return (
     <div>
+         <div  className='container-all-products'>
+      <Link className="det-text" to="/">Main page</Link>
+          <div className="line"></div>
+       <Link  className='det-texts'to="/discounted">All sales</Link>
+      </div>
     <h2 className='discounted-h2'>Discounted items</h2>
     <DiscountedFilter
      sortBy={sortBy}
@@ -53,8 +59,8 @@ function PageDiscountedProduct() {
      />
     <div className="products-list">
       {discountedProducts.map(product => (
-      <Link to={`/products/${product.id}`}>
-        <DiscountedProduct key={product.id} product={product} />
+      <Link key={product.id} to={`/products/${product.id}`}>
+        <DiscountedProduct  product={product} />
       </Link>
       ))}
     </div>

@@ -78,12 +78,27 @@
   .card {
     flex: 1 1 50%;
   }
+  .maps-container iframe {
+    max-width: 1000px;
+    width: 100%;
+    height: 200px;
+  }
 }
 
 @media (max-width: 768px) {
   .card {
     flex: 1 1 100%;
     min-width: auto;
+  }
+  .maps-container iframe {
+    max-width: 760px;
+    width: 100%;
+    height: 200px;
+  }
+  .footer-container {
+    width: 100%;
+    padding: 20px; 
+    height: auto; 
   }
 }
 
@@ -97,6 +112,8 @@
   }
 
   .maps-container iframe {
+    max-width: 475px;
+    width: 100%;
     height: 200px;
   }
 }
@@ -112,13 +129,5 @@
 
   .card {
     padding: 15px;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer-container {
-    width: 100%;
-    padding: 20px; 
-    height: auto; 
   }
 }

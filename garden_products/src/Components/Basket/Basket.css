@@ -283,3 +283,71 @@ margin: 0px 0px;
 padding: 0px;
 }
 
+
+/* Медиа-запросы для адаптации на разные экраны */
+ @media (min-width: 768px) and (max-width: 1000px) {
+  .shopping-cart{
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-items, .order-details{
+    max-width: 920px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+ 
+ }
+ 
+ @media (min-width: 480px) and (max-width: 768px) {
+  .shopping-cart{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .item-info{
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-items, .order-details{
+    max-width: 758px;
+    width: 100%;
+    margin: 0 auto;
+  }
+ }
+ 
+ @media (min-width: 360px) and (max-width: 480px) {
+  .shopping-cart{
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-items, .order-details{
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .lines{
+    display: none;
+  }
+  .shop{
+    display: flex;
+    flex-direction: column;
+  }
+  
+ }
+ @media (max-width: 360px) {
+  .shopping-cart{
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-items, .order-details{
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .lines{
+    display: none;
+  }
+ 
+ }

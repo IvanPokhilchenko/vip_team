@@ -1,10 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from "react-router-dom";
+import { useForm } from 'react-hook-form';
 import './Basket.css';
+import Modal from './Modal';
 
 const Basket = () => {
+  const { register, handleSubmit, formState: { errors }, reset} = useForm();
   const items = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+
 
   useEffect(() => {
     // Проверка на наличие сохраненных товаров при загрузке компонента Basket
@@ -57,19 +65,48 @@ const Basket = () => {
   const continueShopping = () => {
     window.location.href = '/products';
   };
+
+  const openModal = () => {
+   // Проверяем валидность формы
+   handleSubmit(onSubmit)();
+   let isFormValid = true;
+  // Проверяем, есть ли ошибки валидации в каждом поле
+  Object.values(errors).forEach(error => {
+    if (error.message.length > 0) {
+      isFormValid = false;
+    }
+  });
+   // Если форма валидна, открываем модальное окно
+   if (isFormValid) {
+     setIsModalOpen(true);
+   }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
+
   if (!items || items.length === 0) {
     return (
       <div className="shopping-cart-empty">
          <div className='shop'>
           <h2 className='shopping-c'>Shopping cart</h2>
           <div className='lines'></div>
-          <span  className="all-text">Back to the store</span>
+          <Link to={`/products`} ><span  className="all-text">Back to the store</span></Link>
         </div>
         <p className='looks'>Looks like you have no items in your basket currently.</p>
         <button className='continue-btn' onClick={continueShopping}>Continue Shopping</button>
       </div>
     );
   }
+
+  const onSubmit = (data) => {
+    console.log(data); 
+    reset();
+  };
+
 
   console.log(items);
 
@@ -78,7 +115,7 @@ const Basket = () => {
     <div className='shop-order'>
           <h2 className='shopping-c'>Shopping cart</h2>
           <div className='lines'></div>
-          <span  className="all-text">Back to the store</span>
+          <Link to={`/products`} ><span  className="all-text">Back to the store</span></Link>
       </div>
     <div className="shopping-cart">
       <div className="cart-items">
@@ -119,14 +156,18 @@ const Basket = () => {
         <p>{items.reduce((total, item) => total + item.quantity, 0)} items</p>
         <p>Total: ${calculateTotal()}</p>
         </div>
-        <div className="user-details">
-          <input type="text" placeholder="Name" />
-          <input type="text" placeholder="Phone number" />
-          <input type="email" placeholder="Email" />
-          <button className='order'>Order</button>
-        </div>
+        <form className="user-details" onSubmit={handleSubmit(onSubmit)}>
+          <input type="text" name='name' placeholder="Name" {...register("name", { required: "This input is required", minLength: {value: 3, message: "Minimum length is 3 symbols"}, maxLength: {value: 20, message: "Maximum length is 20 symbols"}, })} />
+          <div>{ errors.name && <p>{errors.name.message}</p> }</div>
+          <input type="text" name='phone' placeholder="Phone number" {...register("phone", { required: "This input is required", minLength: {value: 3, message: "Minimum length is 3 symbols"}, maxLength: {value: 20, message: "Maximum length is 20 symbols"}, })}/>
+          <div>{ errors.phone && <p>{errors.phone.message}</p> }</div>
+          <input type="email" name='email' placeholder="Email" {...register("email", { required: "This input is required", minLength: {value: 3, message: "Minimum length is 3 symbols"}, maxLength: {value: 40, message: "Maximum length is 20 symbols"}, })}/>
+          <div>{ errors.email && <p>{errors.email.message}</p> }</div>
+          <button className='order' onClick={openModal}>Order</button>
+        </form>
       </div>
       </div>
+      {isModalOpen && <Modal closeModal={closeModal} />}
     </>
   );
 };

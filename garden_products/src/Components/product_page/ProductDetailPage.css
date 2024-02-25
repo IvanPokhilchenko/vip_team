@@ -18,6 +18,12 @@ width: Hug (118px);
 height: Hug (36px);
 padding: 8px, 16px, 8px, 16px;
 }
+.det-texts{
+  border-radius: 6px;
+  border: 1px solid #DDD;
+  padding: 8px 16px;
+  color: black;
+}
 .allpr-text{
 margin-left: 90px;
 }

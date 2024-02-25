@@ -8,6 +8,8 @@
   padding: 10px 0;
   /* margin-bottom: 30px; */
   background-color: var(--white-color);
+  border-bottom: 1px solid rgb(208, 208, 208);
+
 }
 
 .header_content {

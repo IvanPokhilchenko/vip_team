@@ -1,16 +1,24 @@
 .wrapper-all-p{
   padding: 40px;
 }
-
- .container-all-products {
-  /* display: flex;
-  align-items: center;
-  margin-left: 20px; */
-  /* white-space: nowrap; Забезпечуємо, щоб елементи не переносилися */
-    
-  text-align: left;
-  
-} 
+.products-h2{
+  width: 1360px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 50px;
+  /* margin: 40px 0px; */
+  color: rgb(40, 40, 40);
+  font-family: Montserrat;
+  font-size: 64px;
+  font-weight: 700;
+}
+.container-all-products{
+  margin-top: -20px;
+  margin-bottom: 30px;
+}
 
 
 .container-all-products p {
@@ -60,9 +68,6 @@ line-height: 110%;
 letter-spacing: 0%;
 text-align: left;
 }
-
-
-
 .all-text {
   color: rgb(139, 139, 139);
   font-family: Montserrat;
@@ -73,192 +78,8 @@ text-align: left;
   text-align: center;
 }
 
-.products-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 20px;
-  padding: 0 10px;
-}
-
-.product-item {
-max-width: 100%;
-border: 1px solid 
-#DDDDDD;
-border-radius: 12px;
-display: flex; /* Added */
-flex-direction: column; /* Added */
-}
-
-.product-image img {
-  /* position: relative; */
-
-  width: 100%;
-  height: auto;
-}
-
-/* img {
-  max-width: 316px;
-  height: 284px;
-  width: 100%;
-  border: 1px solid #DDD; */
-/* } */
-.price-container{
-  
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  padding: 0 16px;
-}
-
-.discount-percent {
-  font-size: 14px;
-  background-color: #22992f;
-  color: #FFF;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.product-title {
-  color: rgb(40, 40, 40);
-  font-family: Montserrat;
-  padding-left: 20px;
-  padding-top: 20px;
-  font-size: 16px;
-  margin: 5px 0;
-}
-
-.discount-price, .original-price {
-  font-size: 16px;
-  margin: 0; 
-}
 
 
-.discount-price {
-position: static;
-width: 91px;
-height: 44px;
-/* Автолейаут */
-display: flex;
-flex-direction: row;
-justify-content: flex-start;
-align-items: flex-start;
-padding: 5px; 
-
-/* Inside Auto Layout */
-flex: none;
-order: 0;
-flex-grow: 0;
-margin: 0px 16px;
-
-color: rgb(40, 40, 40);
-font-family: Montserrat;
-font-size: 20px;
-font-weight: 600;
-line-height: 110%;
-letter-spacing: 0%;
-text-align: left; 
-
-color: rgb(40, 40, 40);
-font-family: Montserrat;
-font-size: 20px; 
-font-weight: 600;
-line-height: 110%;
-letter-spacing: 0%;
-text-align: left;
-}
-
-.original-price{
-  /* $500 */
-position: static;
-width: 91px;
-height: 44px;
-/* Автолейаут */
-display: flex;
-flex-direction: row;
-justify-content: flex-start;
-align-items: flex-start;
-padding: 5px; 
-
-/* Inside Auto Layout */
-flex: none;
-order: 0;
-flex-grow: 0;
-margin: 0px 16px; 
-
-color: rgb(40, 40, 40);
-font-family: Montserrat;
-font-size: 40px;
-font-weight: 600;
-line-height: 110%;
-letter-spacing: 0%;
-text-align: left;
-margin-right: 5px; 
-
-}
-
-.original-price.discounted {
-  /* $1000 */
-position: static;
-width: 51px;
-height: 26px;
-/* Автолейаут */
- display: flex;
-flex-direction: row;
-justify-content: flex-start;
-align-items: flex-start;
-padding: 5px; 
 
 
-/* Inside Auto Layout */
-flex: none;
-order: 1;
-flex-grow: 0;
-margin: 0px 16px;
 
-color: rgb(139, 139, 139);
-font-family: Montserrat;
-font-size: 20px;
-font-weight: 500;
-line-height: 130%;
-letter-spacing: 0%;
-text-align: left;
-text-decoration-line: line-through;
-}
-/* Медиа-запросы для адаптации на разные экраны */
-@media (min-width: 1440px) {
-  .products-list{
-   grid-template-columns: repeat(4, 1fr);
- 
-  }
- }
- 
- @media (min-width: 1000px) and (max-width:1440px) {
-   .products-list {
-     grid-template-columns: repeat(4, 1fr);
-   }
- }
- @media (min-width: 768px) and (max-width: 1000px) {
-   .products-list {
-     max-width: 1360px;
-   width: 100%;
-     grid-template-columns: repeat(2, 1fr);
-   }
- }
- 
- @media (min-width: 480px) and (max-width: 768px) {
-   .products-list {
-     grid-template-columns: repeat(2, 1fr);
-   }
- }
- 
- @media (min-width: 360px) and (max-width: 480px) {
-   .products-list {
-     grid-template-columns: repeat(1, 1fr);
-   }
- 
- }
- @media (max-width: 360px) {
-   .products-list {
-     grid-template-columns: repeat(1, 1fr);
-   }
- }
