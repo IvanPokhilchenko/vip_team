@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
 import './DiscountForm.css';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 function DiscountForm() {
   const { register, handleSubmit, formState: { errors }, reset} = useForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    try {
+      // Отправляем POST запрос на сервер с использованием Axios
+      const response = await axios.post('http://localhost:3333/sale/send', data);
+
+      if (response.status === 200) {
+        setIsSubmitted(true);
+        reset();
+      } else {
+        throw new Error('Failed to submit request');
+      }
+    } catch (error) {
+      console.error('Error submitting request:', error);
+    }
     console.log(data); 
     setIsSubmitted(true); 
     reset();

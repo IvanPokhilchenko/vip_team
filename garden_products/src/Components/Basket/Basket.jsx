@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import './Basket.css';
 import Modal from './Modal';
+import axios from 'axios';
+
 
 const Basket = () => {
   const { register, handleSubmit, formState: { errors }, reset} = useForm();
@@ -14,7 +16,7 @@ const Basket = () => {
 
 
 
-  useEffect(() => {
+  useEffect(() => {   
     // Проверка на наличие сохраненных товаров при загрузке компонента Basket
     const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     // Загрузка сохраненных товаров в корзину
@@ -101,10 +103,20 @@ const Basket = () => {
       </div>
     );
   }
-
-  const onSubmit = (data) => {
-    console.log(data); 
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      // Отправка данных заказа на сервер
+      const response = await axios.post('http://localhost:3333/order/send', data);
+  
+      if (response.status === 200) {
+        setIsModalOpen(true);
+        reset();
+      } else {
+        throw new Error('Failed to send order');
+      }
+    } catch (error) {
+      console.error('Error sending order:', error);
+    }
   };
 
 
@@ -115,7 +127,7 @@ const Basket = () => {
     <div className='shop-order'>
           <h2 className='shopping-c'>Shopping cart</h2>
           <div className='lines'></div>
-          <Link to={`/products`} ><span  className="all-text">Back to the store</span></Link>
+          <Link to={`/products`} className="all-text">Back to the store</Link>
       </div>
     <div className="shopping-cart">
       <div className="cart-items">
