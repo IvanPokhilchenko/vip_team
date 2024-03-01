@@ -5,11 +5,13 @@ import './AllProducts.css';
 import '../cardStyles.css';
 import ProductFilter from '../ProductsByCategory/ProductFilter';
 
-const AllProducts = () => {
+const AllProducts = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
   const [sortBy, setSortBy] = useState('default');
   const [filterByDiscount, setFilterByDiscount] = useState(false);
   const [filterByPriceRange, setFilterByPriceRange] = useState({ min: 0, max: 1000 });
+  
+
 
   useEffect(() => {
     fetchProducts();
@@ -43,6 +45,7 @@ const AllProducts = () => {
   }
 };
 
+
   return (
     <div className='wrapper-all-p'>
     <div className='cont-all-products'>
@@ -71,7 +74,10 @@ const AllProducts = () => {
               {product.name}
              <div className='product-image'>
                 <img src={`http://localhost:3333${product.image}`} alt={product.title} />
-            
+                <button  className='add-to-cart-button image-button' onClick={(e) => {
+      e.preventDefault();
+      addToCart(product);
+    }}>Add to Cart</button>
                 {product.discont_price && (
                   <span className='discount-percent'>
                     {`-${Math.round((1 - (product.discont_price / product.price)) * 100)}% `}

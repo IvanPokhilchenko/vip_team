@@ -20,7 +20,13 @@ const Basket = () => {
     // Проверка на наличие сохраненных товаров при загрузке компонента Basket
     const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     // Загрузка сохраненных товаров в корзину
-    storedItems.forEach(item => dispatch({ type: 'ADD_TO_CART', payload: item }));
+    storedItems.forEach((item) => {
+      if(
+        items.filter((currentItem) => currentItem.id === item.id).length === 0
+      ){ 
+        dispatch({ type: 'ADD_TO_CART', payload: item })
+    }
+    });
   }, [dispatch]);
 
 
@@ -45,6 +51,7 @@ const Basket = () => {
      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
   };
 
+  
   const updateQuantity = (itemId, newQuantity) => {
     if (newQuantity <= 0) {
       // Если количество меньше или равно нулю, удаляем товар из корзины

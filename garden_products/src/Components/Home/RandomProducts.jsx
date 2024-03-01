@@ -44,6 +44,7 @@ function RandomProducts() {
               <div className='product-image'>
                 {/* Отображаем изображение товара */}
                 <img src={"http://localhost:3333" + product.image} alt={product.title} />
+                <button className='add-to-cart-button image-button'>Add to Cart</button>
                 {/* В данном случае можно добавить информацию о скидке */}
                 {product.discont_price && (
                   <span className='discount-percent'>

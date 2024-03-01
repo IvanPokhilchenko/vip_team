@@ -82,6 +82,7 @@ function ProductsByCategory({ categoryId }) {
                       src={"http://localhost:3333" + product.image}
                       alt={product.title}
                     />
+                     <button className='add-to-cart-button image-button'>Add to Cart</button>
                     {product.discont_price && (
                       <span className="discount-percent">
                         {`-${Math.round(
