@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./fonts/font.css";
 import "./reset.css";
 import "./App.css";
-import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import HomePage from "./Components/HomePage";
 import PageProductsByCategory from "./Components/ProductsByCategory/PageProductsByCategory";
@@ -16,6 +15,8 @@ import BasketPage from "./Components/Basket/BasketPage";
 import ProductDetailPage from "./Components/product_page/ProductDetailPage";
 import Custom404Page from "./Components/Custom404Page";
 import { useDispatch } from 'react-redux';
+import { Header } from "./Components/Header/Header";
+
 
 
 function App() {
