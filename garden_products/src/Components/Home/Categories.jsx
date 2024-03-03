@@ -15,7 +15,7 @@ function Categories() {
         <Link className="all-text" to="/categories" onClick={handleClick}><span>All categories</span></Link>
       </div>
 
-      <div className="container">
+      <div className="cont">
         <CategoriesList limit={4} />
       </div>
     </div>

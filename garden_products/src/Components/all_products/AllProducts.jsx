@@ -4,18 +4,45 @@ import { Link } from "react-router-dom";
 import './AllProducts.css';
 import '../cardStyles.css';
 import ProductFilter from '../ProductsByCategory/ProductFilter';
+import { useDispatch } from 'react-redux';
 
-const AllProducts = ({ addToCart }) => {
+
+const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [sortBy, setSortBy] = useState('default');
   const [filterByDiscount, setFilterByDiscount] = useState(false);
   const [filterByPriceRange, setFilterByPriceRange] = useState({ min: 0, max: 1000 });
-  
+  const dispatch = useDispatch(); 
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCartItems = localStorage.getItem("cartItems");
+    return storedCartItems ? JSON.parse(storedCartItems) : [];
+  });
+  const addToCart = (product) => {
+    
+    const existingProduct = cartItems.find((item) => item.id === product.id);
+
+  if (existingProduct) {
+    // Если товар уже существует в корзине, увеличьте количество
+    const updatedCartItems = cartItems.map((item) =>
+      item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+
+    setCartItems(updatedCartItems);
+    dispatch({ type: 'UPDATE_QUANTITY', payload: updatedCartItems });
+
+  } else {
+    // Если товар не существует в корзине, добавьте его с количеством 1
+    setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    dispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity: 1 } });
+
+  }
+  };
 
 
   useEffect(() => {
     fetchProducts();
-  }, [sortBy, filterByDiscount, filterByPriceRange]);
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [sortBy, filterByDiscount, filterByPriceRange, cartItems]);
 
 
  

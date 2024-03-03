@@ -20,7 +20,7 @@ function CategoriesList({ limit = Infinity }) {
   };
 
   return (
-    <ul className={styles.categories_list}>
+    <ul className={styles.categories_lists}>
       {categories.slice(0, limit).map((category) => (
         <li key={category.id} className={styles.category_item}>
           <Link to={`/categories/${category.id}`} state="category">

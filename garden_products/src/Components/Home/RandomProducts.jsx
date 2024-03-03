@@ -2,13 +2,41 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 // import './RandomProducts.css'
 import '../cardStyles.css'
+import { useDispatch } from 'react-redux';
+
 
 function RandomProducts() {
   const [randomProducts, setRandomProducts] = useState([]);
+  const dispatch = useDispatch(); 
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCartItems = localStorage.getItem("cartItems");
+    return storedCartItems ? JSON.parse(storedCartItems) : [];
+  });
+  const addToCart = (product) => {
+    
+    const existingProduct = cartItems.find((item) => item.id === product.id);
+
+  if (existingProduct) {
+    // Если товар уже существует в корзине, увеличьте количество
+    const updatedCartItems = cartItems.map((item) =>
+      item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+
+    setCartItems(updatedCartItems);
+    dispatch({ type: 'UPDATE_QUANTITY', payload: updatedCartItems });
+
+  } else {
+    // Если товар не существует в корзине, добавьте его с количеством 1
+    setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    dispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity: 1 } });
+
+  }
+  };
 
   useEffect(() => {
     fetchRandomProducts();
-  }, []);
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const fetchRandomProducts = async () => {
     try {
@@ -28,7 +56,7 @@ function RandomProducts() {
   
 
   return (
-      <div className='random-products-container'>
+      <div className='random-products'>
         <div className='containers'>
           <h2 className='categories-text'>Sale</h2>
           <div className='line'></div>
@@ -44,7 +72,10 @@ function RandomProducts() {
               <div className='product-image'>
                 {/* Отображаем изображение товара */}
                 <img src={"http://localhost:3333" + product.image} alt={product.title} />
-                <button className='add-to-cart-button image-button'>Add to Cart</button>
+                <button className='add-to-cart-button image-button' onClick={(e) => {
+      e.preventDefault();
+      addToCart(product);
+    }}>Add to Cart</button>
                 {/* В данном случае можно добавить информацию о скидке */}
                 {product.discont_price && (
                   <span className='discount-percent'>

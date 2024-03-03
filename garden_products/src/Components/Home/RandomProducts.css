@@ -1,7 +1,10 @@
-.random-products-container {
+.random-products {
   max-width: 1360px;
+  width: 100%;
   margin-top: 20px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .containers {
