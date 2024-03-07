@@ -122,6 +122,9 @@ text-decoration-line: line-through;
    grid-template-columns: repeat(4, 1fr);
  
   }
+  .product-item{
+    height: auto;
+  }
  }
  
  @media (min-width: 1000px) and (max-width:1440px) {
@@ -130,7 +133,7 @@ text-decoration-line: line-through;
      height: auto;
    }
    .product-item{
-    height: 420px;
+    height: auto;
    }
  }
  @media (min-width: 768px) and (max-width: 1000px) {
