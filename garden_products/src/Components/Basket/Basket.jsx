@@ -126,9 +126,10 @@ const Basket = () => {
     }
   };
 
-
-  console.log(items);
-
+  const handleModalClose = () => {
+    items.forEach(item => removeFromCart(item.id));
+    setIsModalOpen(false);
+  };
   return (
     <>
     <div className='shop-order'>
@@ -186,7 +187,7 @@ const Basket = () => {
         </form>
       </div>
       </div>
-      {isModalOpen && <Modal closeModal={closeModal} />}
+      {isModalOpen && <Modal closeModal={handleModalClose} />}
     </>
   );
 };

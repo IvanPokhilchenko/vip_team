@@ -14,7 +14,9 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(mediaQuery.matches);
   const [active, setActive] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const itemsCountInCart = useSelector((state) => state.cart.items.length);
+  const [itemCount, setItemCount] = useState(0); // Локальное состояние для хранения количества товаров в корзине
+
+  const items = useSelector((state) => state.cart.items);
 
   useEffect(() => {
     const handleResize = () => {
@@ -46,6 +48,12 @@ const Header = () => {
     };
   }, [active]);
 
+  useEffect(() => {
+    // Обновляем локальное состояние при изменениях в количестве товаров в корзине
+    const totalItemCount = items.reduce((total, item) => total + item.quantity, 0);
+    setItemCount(totalItemCount);
+  }, [items]);
+
   const toggleActive = () => {
     setActive(!active);
     setIsSidebarOpen(!isSidebarOpen);
@@ -74,8 +82,8 @@ const Header = () => {
                   onClick={() => setActive(false)}
                 >
                   <HiOutlineShoppingBag />
-                  {itemsCountInCart > 0 && (
-                    <p className={styles.cart_total}>{itemsCountInCart}</p>
+                  {itemCount > 0 && (
+                    <p className={styles.cart_total}>{itemCount}</p>
                   )}
                 </NavLink>
                 <Burger onClick={toggleActive} active={active && "active"} />
@@ -91,8 +99,8 @@ const Header = () => {
                   onClick={() => setActive(false)}
                 >
                   <HiOutlineShoppingBag />
-                  {itemsCountInCart > 0 && (
-                    <p className={styles.cart_total}>{itemsCountInCart}</p>
+                  {itemCount > 0 && (
+                    <p className={styles.cart_total}>{itemCount}</p>
                   )}
                 </NavLink>
               </div>
