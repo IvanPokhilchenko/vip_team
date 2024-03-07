@@ -123,7 +123,7 @@ text-decoration-line: line-through;
  
   }
   .product-item{
-    height: auto;
+    height: 450px;
   }
  }
  
@@ -133,7 +133,7 @@ text-decoration-line: line-through;
      height: auto;
    }
    .product-item{
-    height: auto;
+    height: 450px;
    }
  }
  @media (min-width: 768px) and (max-width: 1000px) {
