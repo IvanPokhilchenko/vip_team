@@ -18,7 +18,7 @@ function ProductFilter({ sortBy, setSortBy, filterByDiscount, setFilterByDiscoun
 
   return (
     <div className="product-filter">
-       <div>
+       <div className='filter-by-price'>
         <label>Price</label>
         <input type="number" name="min" placeholder='from' onChange={handlePriceRangeChange} />
         <input type="number" name="max" placeholder='to' onChange={handlePriceRangeChange} />

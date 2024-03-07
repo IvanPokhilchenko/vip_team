@@ -112,6 +112,7 @@ border-radius: 12px 0px 0px 12px;
 }
 
 .item-details {
+  width: auto;
   display: flex;
   align-items: center;
 }
@@ -285,6 +286,25 @@ padding: 0px;
 
 
 /* Медиа-запросы для адаптации на разные экраны */
+@media (min-width: 1000px) {
+  .item-details{
+    width: auto;
+  }
+  .quantity{
+    width: 200px;
+  }
+  .counter{
+    width: 30px;
+  }
+  .orig-price, .dis-price{
+    font-size: 30px;
+  }
+  .orig-price.discounted{
+    font-size: 20px;
+    margin: 0;
+  }
+
+}
  @media (min-width: 768px) and (max-width: 1000px) {
   .shopping-cart{
     display: flex;
@@ -314,6 +334,16 @@ padding: 0px;
     width: 100%;
     margin: 0 auto;
   }
+  .item-details{
+    width: auto;
+  }
+  .quantity{
+    width: 200px;
+  }
+  .counter{
+    width: 30px;
+  }
+
  }
  
  @media (min-width: 360px) and (max-width: 480px) {
@@ -334,6 +364,26 @@ padding: 0px;
     display: flex;
     flex-direction: column;
   }
+  .item-details{
+    width: auto;
+  }
+  .quantity{
+    width: 170px;
+  }
+  .counter{
+    width: 30px;
+  }
+  .orig-price, .dis-price{
+    width: 10px;
+    font-size: 20px;
+    margin-right: 20px;
+    
+  }
+  .cart-item  img {
+    width: 150px;
+    height: 180px;
+  }
+
   
  }
  @media (max-width: 360px) {
@@ -348,6 +398,30 @@ padding: 0px;
   }
   .lines{
     display: none;
+  }
+  .item-details{
+    width: auto;
+    display: flex;
+  }
+  .quantity{
+    display: flex;
+    width: 170px;
+  }
+
+  .counter, .number{
+    width: 35px;
+    height: 35px;
+  }
+  .orig-price, .dis-price{
+    width: 10px;
+    font-size: 20px;
+  }
+  .cart-items{
+    width: 350px;
+  }
+  .cart-item  img {
+    width: 100px;
+    height: 180px;
   }
  
  }
