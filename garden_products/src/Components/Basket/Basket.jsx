@@ -103,7 +103,7 @@ const Basket = () => {
          <div className='shop'>
           <h2 className='shopping-c'>Shopping cart</h2>
           <div className='lines'></div>
-          <Link to={`/products`} ><span  className="all-text">Back to the store</span></Link>
+          <Link to={`/products`} className="all-text">Back to the store</Link>
         </div>
         <p className='looks'>Looks like you have no items in your basket currently.</p>
         <button className='continue-btn' onClick={continueShopping}>Continue Shopping</button>
